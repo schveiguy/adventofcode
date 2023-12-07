@@ -1,0 +1,4 @@
+.*.swp
+*.o
+puzzleinput.txt
+testinput*.txt
