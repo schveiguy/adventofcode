@@ -132,7 +132,7 @@ void main(string[] args)
         int choices = sum(matches) - cast(int)data[0].count('#'); // how many more # we need
         matches ~= 0; // sentinel
         long v = pick(data[0].dup, 0, choices, slots, matches, new Memo);
-        writeln("part1: ", v);
+        //writeln("part1: ", v);
         part1 += v;
 
         // part 2
@@ -147,7 +147,7 @@ void main(string[] args)
         }
         p2matches ~= 0; // sentinel
         v = pick(p2data, 0, choices * 5, slots * 5 + 4, p2matches, new Memo);
-        writeln("part2: ", v);
+        //writeln("part2: ", v);
         part2 += v;
     }
     writeln(part1);

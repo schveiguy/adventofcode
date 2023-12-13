@@ -60,7 +60,7 @@ part2loop:
                 {
                     char cur = section[y][x];
                     char newc = cur == '.' ? '#' : '.';
-                    section[y][x] = transposed[x][y] = cur == '.' ? '#' : '.';
+                    section[y][x] = transposed[x][y] = newc;
                     if(auto v = reflectionPoint(section, curv))
                     {
                         part2 += v;
