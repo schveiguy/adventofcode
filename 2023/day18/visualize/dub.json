@@ -1,0 +1,1 @@
+{"libs" : ["raylib"], "lflags-posix" : ["-L."], "lflags-osx" : ["-rpath", "@executable_path/"], "lflags-linux" : ["-rpath=$$ORIGIN"], "description" : "A minimal D application.", "name" : "visualize", "dependencies" : {"raylib-d" : "~>5.0.0"}, "authors" : ["Steven Schveighoffer"], "copyright" : "Copyright © 2023, Steven Schveighoffer", "license" : "proprietary"}
