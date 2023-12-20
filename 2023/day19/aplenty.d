@@ -75,6 +75,11 @@ void main(string[] args)
         }
     }
 
+    // sentinels
+    workflows["A"] = [Inst('A')];
+    workflows["R"] = [];
+
+
     int part1()
     {
         int accepted = 0;
@@ -83,32 +88,26 @@ void main(string[] args)
             Inst[] cur = workflows["in"];
             while(true)
             {
-                auto result = cur.front.check(vals);
-                if(result.length == 0)
-                    cur.popFront;
-                else if(result == "A")
+                if(cur.length == 0)
+                    // rejected
+                    break;
+                if(cur.front.member == 'A')
                 {
                     accepted += vals[].sum;
                     break;
                 }
-                else if(result == "R")
-                {
-                    break;
-                }
-                else
+                if(auto result = cur.front.check(vals))
                 {
                     // new workflow
                     cur = workflows[result];
                 }
+                else
+                    cur.popFront;
             }
         }
         return accepted;
     }
     writeln(part1());
-
-    // sentinels for part 2
-    workflows["A"] = [Inst('A')];
-    workflows["R"] = [];
 
     long part2()
     {
@@ -135,11 +134,7 @@ void main(string[] args)
                     total += calc(vals);
                     break;
                 }
-                if(cur.member == 'R')
-                {
-                    break;
-                }
-                if(cur.member == '\0')
+                else if(cur.member == '\0')
                 {
                     total += recurse(workflows[cur.target], vals);
                     break;
@@ -147,10 +142,10 @@ void main(string[] args)
                 auto m = "xmas".indexOf(cur.member);
                 if(cur.lt)
                 {
-                    auto orig = vals[m][1];
                     if(vals[m][0] < cur.val)
                     {
                         // select this one
+                        auto orig = vals[m][1];
                         vals[m][1] = min(cur.val, orig);
                         total += recurse(workflows[cur.target], vals);
                         if(vals[m][1] == orig)
@@ -162,10 +157,10 @@ void main(string[] args)
                 }
                 else
                 {
-                    auto orig = vals[m][0];
                     if(vals[m][1] > cur.val + 1)
                     {
                         // select this one
+                        auto orig = vals[m][0];
                         vals[m][0] = max(cur.val + 1, orig);
                         total += recurse(workflows[cur.target], vals);
                         if(vals[m][0] == orig)
