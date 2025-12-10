@@ -8,17 +8,6 @@ import std.format;
 import std.ascii;
 import std.traits;
 
-struct Vec
-{
-    long x;
-    long y;
-
-    Vec opBinary(string op : "+")(Vec o) => Vec(x + o.x, y + o.y);
-    Vec opUnary(string op : "-")() => Vec(-x, -y);
-    Vec left() => Vec(y, -x);
-    Vec right() => Vec(-y, x);
-}
-
 void main(string[] args)
 {
     auto input = readText(args[1]).splitter('\n').filter!(v => !v.empty).map!(v => v.dup).array;
